@@ -1,0 +1,92 @@
+:root {
+    background-color: #3a4142;
+    color: #32e1fa;
+    
+}
+body {
+    margin: 0;
+    
+}
+#header {
+    height: 100px;
+    width: 100vw;    
+}
+
+#nav {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo {
+    display: inline-block;
+    height: 10vh;
+    line-height: 50px;
+}
+.word-count {
+    display: inline-block;
+    height: 100%;
+    line-height: 50px;
+}
+.word-count:hover{
+    color: #b1dde3
+}
+
+li {
+    display: inline-block;
+    padding: 0 0.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+#top-spacer {
+    width: 100%;
+    height: 15vh;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+#typing-area {
+    width: 1000px;
+    height: 60vh;
+}
+.word {
+    display: inline-block;
+    padding: 0.5rem;
+}
+.letter {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    display:inline-block;
+    padding: 0.125rem;
+    height: 1.5rem;
+    text-align: center;
+    color: #b1dde3;
+    font-weight: 900;
+}
+
+@keyframes cursor {
+    0% {border-left: white 2px solid;}
+    50% {border-left: white 2px solid;}
+    75% {border-left: #3a4142 2px solid;}
+    100% {border-left: white 2px solid;}
+}
+.word.active .letter.active {
+    /*color: red;*/
+    box-sizing: border-box;
+    animation: cursor 1s infinite;
+    box-shadow: inset 2px;
+    
+}
+.letter.valid {
+    color: #32e1fa;
+}
+
+.letter.invalid {
+    color: red;
+}
