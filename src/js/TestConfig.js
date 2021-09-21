@@ -3,10 +3,14 @@ export default class TestConfig {
     value = 25;
     constructor(wordContainer) {
         this.wordContainer = wordContainer
-    }
+    }  
+
     settingsButtonPress() {
-        document.getElementsByClassName('test-setting').addEventListener('click', console.log('hi')/*getData(settingsButton)*/);
-        console.log('button press')
+        console.log(document.getElementsByClassName('test-setting'));
+        const settingButtons = [...document.getElementsByClassName('test-setting')];
+        settingButtons.forEach((settingButtons) => settingButtons.addEventListener('click', () => console.log('hi')))
+        // settingButton.addEventListener('click', console.log('hi')/*getData(settingsButton)*/);
+        // console.log('button press')
     }
 
     getData(button) {

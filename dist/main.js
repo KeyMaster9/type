@@ -283,6 +283,79 @@ var RenderWords = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/TestConfig.js":
+/*!******************************!*\
+  !*** ./src/js/TestConfig.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TestConfig)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var TestConfig = /*#__PURE__*/function () {
+  function TestConfig(wordContainer) {
+    _classCallCheck(this, TestConfig);
+
+    _defineProperty(this, "testType", 'word-count');
+
+    _defineProperty(this, "value", 25);
+
+    this.wordContainer = wordContainer;
+  }
+
+  _createClass(TestConfig, [{
+    key: "settingsButtonPress",
+    value: function settingsButtonPress() {
+      console.log(document.getElementsByClassName('test-setting'));
+
+      var settingButtons = _toConsumableArray(document.getElementsByClassName('test-setting'));
+
+      settingButtons.forEach(function (settingButtons) {
+        return settingButtons.addEventListener('click', function () {
+          return console.log('hi');
+        });
+      }); // settingButton.addEventListener('click', console.log('hi')/*getData(settingsButton)*/);
+      // console.log('button press')
+    }
+  }, {
+    key: "getData",
+    value: function getData(button) {
+      var type = button.getAttribute('testType');
+      var value = button.getAttribute('value');
+      console.log(type, value);
+    } // setConfig(type, value) {
+    // }
+
+  }]);
+
+  return TestConfig;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/js/Timer.js":
 /*!*************************!*\
   !*** ./src/js/Timer.js ***!
@@ -1000,25 +1073,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Timer */ "./src/js/Timer.js");
 /* harmony import */ var _Calculations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Calculations */ "./src/js/Calculations.js");
 /* harmony import */ var _CalculationsRenderer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CalculationsRenderer */ "./src/js/CalculationsRenderer.js");
+/* harmony import */ var _TestConfig__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./TestConfig */ "./src/js/TestConfig.js");
 
 
 
 
 
 
- //import TestConfig from './TestConfig';
+
+
 
 (function () {
   var wordGenerator = new _WordGenerator__WEBPACK_IMPORTED_MODULE_2__["default"]();
   var renderer = new _RenderWords__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementById('typing-area'));
-  var wordContainer = wordGenerator.generateWords(); // const settingsConfig = new TestConfig(wordContainer);
-
+  var wordContainer = wordGenerator.generateWords();
+  var testConfig = new _TestConfig__WEBPACK_IMPORTED_MODULE_7__["default"](wordContainer);
   var timer = new _Timer__WEBPACK_IMPORTED_MODULE_4__["default"]();
   var calculator = new _Calculations__WEBPACK_IMPORTED_MODULE_5__["default"](wordContainer, timer);
   var timerRenderer = new _TimerRenderer__WEBPACK_IMPORTED_MODULE_1__["default"](document.getElementById('timer-display'), timer);
   var userInput = new _UserInput__WEBPACK_IMPORTED_MODULE_3__["default"](wordContainer);
-  var calculationsRenderer = new _CalculationsRenderer__WEBPACK_IMPORTED_MODULE_6__["default"](calculator); // settingsConfig.settingsButtonPress();
-
+  var calculationsRenderer = new _CalculationsRenderer__WEBPACK_IMPORTED_MODULE_6__["default"](calculator);
+  testConfig.settingsButtonPress();
   userInput.onInput(function () {
     if (!timer.hasStarted()) {
       timer.start();
