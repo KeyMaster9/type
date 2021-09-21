@@ -1,10 +1,9 @@
+
+import defaultWords from '../json/defaultWords';
+import Character from './Character';
+import Word from './Word';
+
 export default class WordContainer {
-    constructor(words) {
-        this.words = words;
-        if (words.length > 0) {
-            words[0].setActive(true);
-        }
-    }
 
     getActiveWord() {
         var active = this.words.find(word => word.isActive());
@@ -87,5 +86,51 @@ export default class WordContainer {
         return correctChar;
     }
 
-}
 
+    wordPicker(wordChoice = defaultWords) {
+        let maxVar = wordChoice.length;
+        let selectedWord = Math.floor(Math.random() * maxVar);
+        return wordChoice[selectedWord];
+    }
+
+    splitter(word) {
+        let letters = []
+        for (var i = 0; i !== word.length; i++) {
+            letters.push(word.charAt(i))
+        }
+        return letters;
+    }
+
+    build(count = 25) {
+        var words = [];
+        var newWord = null
+        var prevWord = null;
+        for (let i = 0; i < count; i++) {
+
+            const characters = [];
+
+            do {
+                newWord = this.wordPicker();
+
+                if (newWord === prevWord) {
+                    console.log('gotta do it again')
+                }
+            } while (newWord === prevWord)
+
+            this.splitter(newWord).forEach((character) => {
+                const char = new Character(character);
+                characters.push(char);
+            });
+
+            const word = new Word(characters);
+            words.push(word);
+
+            prevWord = newWord;
+        }
+
+        this.words = words;
+        if (words.length > 0) {
+            words[0].setActive(true);
+        }
+    }
+}

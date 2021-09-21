@@ -1,24 +1,14 @@
 export default class TestConfig {
     testType = 'word-count';
-    value = 25;
-    constructor(wordContainer) {
-        this.wordContainer = wordContainer
-    }  
-
-    settingsButtonPress() {
-        console.log(document.getElementsByClassName('test-setting'));
+    onSettingsButtonPress(callback) {
         const settingButtons = [...document.getElementsByClassName('test-setting')];
-        settingButtons.forEach((settingButtons) => settingButtons.addEventListener('click', () => console.log('hi')))
+        settingButtons.forEach((settingButtons) => settingButtons.addEventListener('click', () => {
+            const value = +settingButtons.getAttribute('value');
+            const type = settingButtons.getAttribute('testType');
+
+            callback(type, value)
+        }))
         // settingButton.addEventListener('click', console.log('hi')/*getData(settingsButton)*/);
         // console.log('button press')
     }
-
-    getData(button) {
-        const type = button.getAttribute('testType');
-        const value = button.getAttribute('value');
-        console.log(type, value)
-    }
-    // setConfig(type, value) {
-        
-    // }
 }

@@ -1,21 +1,37 @@
 import RenderWords from './RenderWords';
 import TimerRenderer from './TimerRenderer';
-import WordGenerator from './WordGenerator';
 import UserInput from './UserInput';
 import Timer from './Timer';
 import Calculations from './Calculations';
 import CalculationsRenderer from './CalculationsRenderer';
 import TestConfig from './TestConfig';
+import store from 'store';
+import WordContainer from './WordContainer';
+
 
 
 (function () {
-    var wordGenerator = new WordGenerator();
     const renderer = new RenderWords(document.getElementById('typing-area'));
 
-    const wordContainer = wordGenerator.generateWords();
+    const wordContainer = new WordContainer();
+    wordContainer.build(store.get('word-count'));
 
-    const testConfig = new TestConfig(wordContainer);
+    const testConfig = new TestConfig();
+
+
     const timer = new Timer();
+
+    testConfig.onSettingsButtonPress((type, value) => {
+        store.set('word-count', value);
+        wordContainer.build(value);
+
+        timer.end();
+        timerRenderer.stopRenderering();
+        renderer.render(wordContainer);
+
+    });
+
+
 
     const calculator = new Calculations(wordContainer, timer);
 
@@ -24,7 +40,6 @@ import TestConfig from './TestConfig';
 
     const calculationsRenderer = new CalculationsRenderer(calculator);
 
-    testConfig.settingsButtonPress();
 
     userInput.onInput(() => {
         if (!timer.hasStarted()) {
