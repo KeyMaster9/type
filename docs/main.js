@@ -50,55 +50,17 @@ var Calculations = /*#__PURE__*/function () {
   }, {
     key: "masterCalc",
     value: function masterCalc(words, time) {
-      alert("".concat(words * time, "wpm"));
-      return;
+      return words * time;
     }
   }, {
     key: "runTrueWpmCalc",
     value: function runTrueWpmCalc() {
       console.log("".concat(this.relativeTime(), "seconds  ").concat(this.words(), "words"));
-      this.masterCalc(this.words(), this.relativeTime());
+      return this.masterCalc(this.words(), this.relativeTime());
     }
   }]);
 
   return Calculations;
-}();
-
-
-
-/***/ }),
-
-/***/ "./src/js/CalculationsRenderer.js":
-/*!****************************************!*\
-  !*** ./src/js/CalculationsRenderer.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CalculationsRenderer)
-/* harmony export */ });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var CalculationsRenderer = /*#__PURE__*/function () {
-  function CalculationsRenderer(calculations) {
-    _classCallCheck(this, CalculationsRenderer);
-
-    this.calculations = calculations;
-  }
-
-  _createClass(CalculationsRenderer, [{
-    key: "render",
-    value: function render() {// calculations.getWordsPerMinute();
-    }
-  }]);
-
-  return CalculationsRenderer;
 }();
 
 
@@ -286,6 +248,58 @@ var RenderWords = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/ResultsRenderer.js":
+/*!***********************************!*\
+  !*** ./src/js/ResultsRenderer.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ResultsRenderer)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ResultsRenderer = /*#__PURE__*/function () {
+  function ResultsRenderer(calculations) {
+    _classCallCheck(this, ResultsRenderer);
+
+    this.calculations = calculations;
+  }
+
+  _createClass(ResultsRenderer, [{
+    key: "renderSequence",
+    value: function renderSequence() {
+      var wpm = this.calculations.runTrueWpmCalc();
+      var totalTime = this.calculations.calcSeconds();
+      var correctWords = this.calculations.words();
+      var correctChars = this.calculations.getCorrectChars();
+      var displaySheet = "\n        <div id=\"wpm\" class=\"results-rendered\">WPM: ".concat(Math.round(wpm), "</div>\n        <br/>\n        <div id=\"total-time\" class=\"results-rendered\">Time: ").concat(totalTime, "s</div>\n        <br/>\n        <div id=\"correct-words\" class=\"results-rendered\">Correct words: ").concat(correctWords, "</div>\n        <br/>\n        <div id=\"correct-characters\" class=\"results-rendered\">Correct Characters: ").concat(correctChars, "</div>\n        ");
+      return displaySheet;
+    }
+  }, {
+    key: "renderDisplay",
+    value: function renderDisplay() {
+      var main = document.getElementById('main');
+      var main2 = document.getElementById('main2');
+      main.style.display = 'none';
+      main2.style.display = 'flex';
+      main2.innerHTML = this.renderSequence(); // calculations.getWordsPerMinute();
+    }
+  }]);
+
+  return ResultsRenderer;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/js/TestConfig.js":
 /*!******************************!*\
   !*** ./src/js/TestConfig.js ***!
@@ -463,6 +477,7 @@ var TimerRenderer = /*#__PURE__*/function () {
     key: "stopRenderering",
     value: function stopRenderering() {
       clearTimeout(this._timeout);
+      console.log('timeout cleared');
     }
   }, {
     key: "render",
@@ -2407,7 +2422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserInput */ "./src/js/UserInput.js");
 /* harmony import */ var _Timer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Timer */ "./src/js/Timer.js");
 /* harmony import */ var _Calculations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Calculations */ "./src/js/Calculations.js");
-/* harmony import */ var _CalculationsRenderer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CalculationsRenderer */ "./src/js/CalculationsRenderer.js");
+/* harmony import */ var _ResultsRenderer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ResultsRenderer */ "./src/js/ResultsRenderer.js");
 /* harmony import */ var _TestConfig__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TestConfig */ "./src/js/TestConfig.js");
 /* harmony import */ var store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! store */ "./node_modules/store/dist/store.legacy.js");
 /* harmony import */ var store__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(store__WEBPACK_IMPORTED_MODULE_7__);
@@ -2432,13 +2447,14 @@ __webpack_require__.r(__webpack_exports__);
     store__WEBPACK_IMPORTED_MODULE_7___default().set('word-count', value);
     wordContainer.build(value);
     timer.end();
+    timer.reset();
     timerRenderer.stopRenderering();
     renderer.render(wordContainer);
   });
   var calculator = new _Calculations__WEBPACK_IMPORTED_MODULE_4__["default"](wordContainer, timer);
   var timerRenderer = new _TimerRenderer__WEBPACK_IMPORTED_MODULE_1__["default"](document.getElementById('timer-display'), timer);
   var userInput = new _UserInput__WEBPACK_IMPORTED_MODULE_2__["default"](wordContainer);
-  var calculationsRenderer = new _CalculationsRenderer__WEBPACK_IMPORTED_MODULE_5__["default"](calculator);
+  var resultsRenderer = new _ResultsRenderer__WEBPACK_IMPORTED_MODULE_5__["default"](calculator);
   userInput.onInput(function () {
     if (!timer.hasStarted()) {
       timer.start();
@@ -2449,9 +2465,8 @@ __webpack_require__.r(__webpack_exports__);
   });
   userInput.onComplete(function () {
     timer.end();
-    calculator.runTrueWpmCalc();
     timerRenderer.stopRenderering();
-    calculationsRenderer.render();
+    resultsRenderer.renderDisplay();
   });
   userInput.start();
   renderer.render(wordContainer);

@@ -3,7 +3,7 @@ import TimerRenderer from './TimerRenderer';
 import UserInput from './UserInput';
 import Timer from './Timer';
 import Calculations from './Calculations';
-import CalculationsRenderer from './CalculationsRenderer';
+import ResultsRenderer from './ResultsRenderer';
 import TestConfig from './TestConfig';
 import store from 'store';
 import WordContainer from './WordContainer';
@@ -26,6 +26,7 @@ import WordContainer from './WordContainer';
         wordContainer.build(value);
 
         timer.end();
+        timer.reset();
         timerRenderer.stopRenderering();
         renderer.render(wordContainer);
 
@@ -38,7 +39,7 @@ import WordContainer from './WordContainer';
     const timerRenderer = new TimerRenderer(document.getElementById('timer-display'), timer);
     var userInput = new UserInput(wordContainer, /*settingsConfig*/);
 
-    const calculationsRenderer = new CalculationsRenderer(calculator);
+    const resultsRenderer = new ResultsRenderer(calculator);
 
 
     userInput.onInput(() => {
@@ -51,10 +52,8 @@ import WordContainer from './WordContainer';
 
     userInput.onComplete(() => {
         timer.end();
-        calculator.runTrueWpmCalc();
         timerRenderer.stopRenderering();
-
-        calculationsRenderer.render();
+        resultsRenderer.renderDisplay();
     });
 
     userInput.start();

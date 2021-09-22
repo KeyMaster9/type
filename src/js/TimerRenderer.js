@@ -17,6 +17,7 @@ export default class TimerRenderer {
 
     stopRenderering() {
         clearTimeout(this._timeout);
+        console.log('timeout cleared')
     }
 
     render() {

@@ -17,13 +17,11 @@ export default class Calculations {
         return 60 / this.calcSeconds();
     }
     masterCalc(words, time) {
-        alert(`${words * time}wpm`);
-
-        return;
+        return (words * time);
     }
     runTrueWpmCalc() {
         console.log(`${this.relativeTime()}seconds  ${this.words()}words`)
-        this.masterCalc(this.words(), this.relativeTime())
+        return this.masterCalc(this.words(), this.relativeTime())
     }
 
 

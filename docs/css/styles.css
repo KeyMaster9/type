@@ -3,6 +3,10 @@
     color: #32e1fa;
     
 }
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
 body {
     margin: 0;
     
@@ -25,6 +29,8 @@ body {
     height: 10vh;
     line-height: 50px;
 }
+    
+
 .word-count {
     display: inline-block;
     height: 100%;
@@ -42,14 +48,29 @@ li {
 }
 #top-spacer {
     width: 100%;
-    height: 15vh;
+    height: 10vh;
 }
 
 #main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
+}
+#main2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.results-rendered {
+    font-weight: 700;
+    font-size: 2rem;
+}
+#timer-display {
+    font-size: 2rem;
+    height: 5vh;
 }
 #typing-area {
     width: 1000px;
@@ -75,6 +96,14 @@ li {
     50% {border-left: white 2px solid;}
     75% {border-left: #3a4142 2px solid;}
     100% {border-left: white 2px solid;}
+}
+@keyframes hide {
+    0% {opacity: 100%;}
+    100% {opacity: 0%}
+}
+@keyframes unhide {
+    0% {opacity: 0%;}
+    100% {opacity: 100%;}
 }
 .word.active .letter.active {
     /*color: red;*/
