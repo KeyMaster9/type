@@ -2539,10 +2539,11 @@ __webpack_require__.r(__webpack_exports__);
     if (reset == 'reset') {
       timer.end();
       timer.reset();
-      wordContainer.build();
+      wordContainer.build(store__WEBPACK_IMPORTED_MODULE_7___default().get('word-count'));
       timerRenderer.stopRenderering();
       renderer.render(wordContainer);
       updateScreen.renderTestDisplay();
+      userInput.start();
     }
   });
   testConfig.onSettingsButtonPress(function (type, value) {

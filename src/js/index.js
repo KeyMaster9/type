@@ -25,10 +25,11 @@ import UpdateScreen from './UpdateScreen';
         if (reset == 'reset') {
             timer.end();
             timer.reset();
-            wordContainer.build();
+            wordContainer.build(store.get('word-count'));
             timerRenderer.stopRenderering();
             renderer.render(wordContainer); 
-            updateScreen.renderTestDisplay();   
+            updateScreen.renderTestDisplay(); 
+            userInput.start();  
         }
         
     });
