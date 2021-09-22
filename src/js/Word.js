@@ -20,7 +20,6 @@ export default class Word {
 
     setComplete(bool = true) {
         this.complete = bool;
-        console.log('word is complete')
         return this;
     }
 

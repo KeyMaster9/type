@@ -19,14 +19,5 @@ export default class ResultsRenderer {
         `;
         return displaySheet;
     }
-    renderDisplay() {
-        const main = document.getElementById('main');
-        const main2 = document.getElementById('main2');
-        main.style.display = 'none';
-        main2.style.display = 'flex';
-        main2.innerHTML =this.renderSequence();
-        // calculations.getWordsPerMinute();
-
-    }
 }
 

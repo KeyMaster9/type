@@ -248,6 +248,47 @@ var RenderWords = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/ResetButton.js":
+/*!*******************************!*\
+  !*** ./src/js/ResetButton.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ResetButton)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ResetButton = /*#__PURE__*/function () {
+  function ResetButton() {
+    _classCallCheck(this, ResetButton);
+  }
+
+  _createClass(ResetButton, [{
+    key: "onResetButtonPress",
+    value: function onResetButtonPress(callback) {
+      var resetButton = document.getElementById('reset-button');
+      console.log(resetButton);
+      resetButton.addEventListener('click', function () {
+        var reset = 'reset';
+        callback(reset);
+      });
+    }
+  }]);
+
+  return ResetButton;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/js/ResultsRenderer.js":
 /*!***********************************!*\
   !*** ./src/js/ResultsRenderer.js ***!
@@ -281,15 +322,6 @@ var ResultsRenderer = /*#__PURE__*/function () {
       var correctChars = this.calculations.getCorrectChars();
       var displaySheet = "\n        <div id=\"wpm\" class=\"results-rendered\">WPM: ".concat(Math.round(wpm), "</div>\n        <br/>\n        <div id=\"total-time\" class=\"results-rendered\">Time: ").concat(totalTime, "s</div>\n        <br/>\n        <div id=\"correct-words\" class=\"results-rendered\">Correct words: ").concat(correctWords, "</div>\n        <br/>\n        <div id=\"correct-characters\" class=\"results-rendered\">Correct Characters: ").concat(correctChars, "</div>\n        ");
       return displaySheet;
-    }
-  }, {
-    key: "renderDisplay",
-    value: function renderDisplay() {
-      var main = document.getElementById('main');
-      var main2 = document.getElementById('main2');
-      main.style.display = 'none';
-      main2.style.display = 'flex';
-      main2.innerHTML = this.renderSequence(); // calculations.getWordsPerMinute();
     }
   }]);
 
@@ -477,7 +509,12 @@ var TimerRenderer = /*#__PURE__*/function () {
     key: "stopRenderering",
     value: function stopRenderering() {
       clearTimeout(this._timeout);
-      console.log('timeout cleared');
+      this.clearTimerRender();
+    }
+  }, {
+    key: "clearTimerRender",
+    value: function clearTimerRender() {
+      this._element.innerHTML = '';
     }
   }, {
     key: "render",
@@ -489,6 +526,56 @@ var TimerRenderer = /*#__PURE__*/function () {
   }]);
 
   return TimerRenderer;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/UpdateScreen.js":
+/*!********************************!*\
+  !*** ./src/js/UpdateScreen.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UpdateScreen)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var UpdateScreen = /*#__PURE__*/function () {
+  function UpdateScreen() {
+    _classCallCheck(this, UpdateScreen);
+  }
+
+  _createClass(UpdateScreen, [{
+    key: "renderResultsDisplay",
+    value: function renderResultsDisplay(results) {
+      var main = document.getElementById('main');
+      var main2 = document.getElementById('main2');
+      main.style.display = 'none';
+      main2.style.animation = 'unhide 1s 1';
+      main2.style.display = 'flex';
+      main2.innerHTML = results;
+    }
+  }, {
+    key: "renderTestDisplay",
+    value: function renderTestDisplay() {
+      var main = document.getElementById('main');
+      var main2 = document.getElementById('main2');
+      main2.style.display = 'none';
+      main.style.animation = 'unhide 1s 1';
+      main.style.display = 'flex';
+    }
+  }]);
+
+  return UpdateScreen;
 }();
 
 
@@ -694,7 +781,6 @@ var Word = /*#__PURE__*/function () {
     value: function setComplete() {
       var bool = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       this.complete = bool;
-      console.log('word is complete');
       return this;
     }
   }, {
@@ -2427,6 +2513,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! store */ "./node_modules/store/dist/store.legacy.js");
 /* harmony import */ var store__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(store__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _WordContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./WordContainer */ "./src/js/WordContainer.js");
+/* harmony import */ var _ResetButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ResetButton */ "./src/js/ResetButton.js");
+/* harmony import */ var _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./UpdateScreen */ "./src/js/UpdateScreen.js");
+
+
 
 
 
@@ -2438,11 +2528,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (function () {
+  var updateScreen = new _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__["default"]();
   var renderer = new _RenderWords__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementById('typing-area'));
   var wordContainer = new _WordContainer__WEBPACK_IMPORTED_MODULE_8__["default"]();
   wordContainer.build(store__WEBPACK_IMPORTED_MODULE_7___default().get('word-count'));
   var testConfig = new _TestConfig__WEBPACK_IMPORTED_MODULE_6__["default"]();
   var timer = new _Timer__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  var resetButton = new _ResetButton__WEBPACK_IMPORTED_MODULE_9__["default"]();
+  resetButton.onResetButtonPress(function (reset) {
+    if (reset == 'reset') {
+      timer.end();
+      timer.reset();
+      wordContainer.build();
+      timerRenderer.stopRenderering();
+      renderer.render(wordContainer);
+      updateScreen.renderTestDisplay();
+    }
+  });
   testConfig.onSettingsButtonPress(function (type, value) {
     store__WEBPACK_IMPORTED_MODULE_7___default().set('word-count', value);
     wordContainer.build(value);
@@ -2466,7 +2568,8 @@ __webpack_require__.r(__webpack_exports__);
   userInput.onComplete(function () {
     timer.end();
     timerRenderer.stopRenderering();
-    resultsRenderer.renderDisplay();
+    var results = resultsRenderer.renderSequence();
+    updateScreen.renderResultsDisplay(results);
   });
   userInput.start();
   renderer.render(wordContainer);

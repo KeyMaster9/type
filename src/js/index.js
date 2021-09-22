@@ -7,20 +7,32 @@ import ResultsRenderer from './ResultsRenderer';
 import TestConfig from './TestConfig';
 import store from 'store';
 import WordContainer from './WordContainer';
-
-
+import ResetButton from './ResetButton';
+import UpdateScreen from './UpdateScreen';
 
 (function () {
+    const updateScreen = new UpdateScreen();
     const renderer = new RenderWords(document.getElementById('typing-area'));
 
     const wordContainer = new WordContainer();
     wordContainer.build(store.get('word-count'));
 
     const testConfig = new TestConfig();
-
-
     const timer = new Timer();
+    const resetButton = new ResetButton();
 
+    resetButton.onResetButtonPress((reset) => {
+        if (reset == 'reset') {
+            timer.end();
+            timer.reset();
+            wordContainer.build();
+            timerRenderer.stopRenderering();
+            renderer.render(wordContainer); 
+            updateScreen.renderTestDisplay();   
+        }
+        
+    });
+    
     testConfig.onSettingsButtonPress((type, value) => {
         store.set('word-count', value);
         wordContainer.build(value);
@@ -53,7 +65,8 @@ import WordContainer from './WordContainer';
     userInput.onComplete(() => {
         timer.end();
         timerRenderer.stopRenderering();
-        resultsRenderer.renderDisplay();
+        var results = resultsRenderer.renderSequence();
+        updateScreen.renderResultsDisplay(results);
     });
 
     userInput.start();

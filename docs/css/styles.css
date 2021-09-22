@@ -64,6 +64,13 @@ li {
     justify-content: center;
     align-items: center;
 }
+#button-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+}
 .results-rendered {
     font-weight: 700;
     font-size: 2rem;
@@ -74,7 +81,7 @@ li {
 }
 #typing-area {
     width: 1000px;
-    height: 60vh;
+    height: 100%;
 }
 .word {
     display: inline-block;
@@ -99,11 +106,11 @@ li {
 }
 @keyframes hide {
     0% {opacity: 100%;}
-    100% {opacity: 0%}
+    100% {opacity: 0%; display: none;}
 }
 @keyframes unhide {
     0% {opacity: 0%;}
-    100% {opacity: 100%;}
+    100% {opacity: 100%; display: flex;}
 }
 .word.active .letter.active {
     /*color: red;*/
