@@ -42,7 +42,7 @@ import UpdateScreen from './UpdateScreen';
         timer.reset();
         timerRenderer.stopRenderering();
         renderer.render(wordContainer);
-
+        updateScreen.renderTestDisplay();
     });
 
 
@@ -69,7 +69,7 @@ import UpdateScreen from './UpdateScreen';
         var results = resultsRenderer.renderSequence();
         updateScreen.renderResultsDisplay(results);
     });
-
+    updateScreen.renderTestDisplay();
     userInput.start();
 
     renderer.render(wordContainer);

@@ -557,21 +557,37 @@ var UpdateScreen = /*#__PURE__*/function () {
   _createClass(UpdateScreen, [{
     key: "renderResultsDisplay",
     value: function renderResultsDisplay(results) {
-      var main = document.getElementById('main');
+      this.hideElements();
       var main2 = document.getElementById('main2');
-      main.style.display = 'none';
       main2.style.animation = 'unhide 1s 1';
       main2.style.display = 'flex';
       main2.innerHTML = results;
+      var buttonArea = document.getElementById('button-area');
+      buttonArea.style.animation = 'unhide 1s 1';
+      buttonArea.style.display = 'flex';
     }
   }, {
     key: "renderTestDisplay",
     value: function renderTestDisplay() {
+      this.hideElements();
+      setTimeout(function () {
+        var main = document.getElementById('main');
+        main.style.animation = 'unhide 1s 1';
+        main.style.display = 'flex';
+        var buttonArea = document.getElementById('button-area');
+        buttonArea.style.animation = 'unhide 1s 1';
+        buttonArea.style.display = 'flex';
+      }, 0);
+    }
+  }, {
+    key: "hideElements",
+    value: function hideElements() {
       var main = document.getElementById('main');
       var main2 = document.getElementById('main2');
+      var buttonArea = document.getElementById('button-area');
+      buttonArea.style.display = 'none';
+      main.style.display = 'none';
       main2.style.display = 'none';
-      main.style.animation = 'unhide 1s 1';
-      main.style.display = 'flex';
     }
   }]);
 
@@ -2553,6 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
     timer.reset();
     timerRenderer.stopRenderering();
     renderer.render(wordContainer);
+    updateScreen.renderTestDisplay();
   });
   var calculator = new _Calculations__WEBPACK_IMPORTED_MODULE_4__["default"](wordContainer, timer);
   var timerRenderer = new _TimerRenderer__WEBPACK_IMPORTED_MODULE_1__["default"](document.getElementById('timer-display'), timer);
@@ -2572,6 +2589,7 @@ __webpack_require__.r(__webpack_exports__);
     var results = resultsRenderer.renderSequence();
     updateScreen.renderResultsDisplay(results);
   });
+  updateScreen.renderTestDisplay();
   userInput.start();
   renderer.render(wordContainer);
 })();
