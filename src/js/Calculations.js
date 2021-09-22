@@ -6,6 +6,9 @@ export default class Calculations {
     getCorrectChars() {
         return this.wordContainer.countValidCharacters();
     }
+    getTotalChars() {
+        return this.wordContainer.countTotalCharacters();
+    }
     calcSeconds() {
         return this.timer.duration() / 1000;
     }
@@ -22,6 +25,10 @@ export default class Calculations {
     runTrueWpmCalc() {
         console.log(`${this.relativeTime()}seconds  ${this.words()}words`)
         return this.masterCalc(this.words(), this.relativeTime())
+    }
+    runAccuracyCalc() {
+        var accuracy = 100 / this.getTotalChars();
+        return accuracy * this.getCorrectChars();
     }
 
 

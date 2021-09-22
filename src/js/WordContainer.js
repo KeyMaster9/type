@@ -85,6 +85,19 @@ export default class WordContainer {
 
         return correctChar;
     }
+    countTotalCharacters() {
+        const numOfWords = this.countCompleteWords() + 1;
+
+        const wordsArray = this.words;
+        const spaces = this.countCompleteWords();
+        var totalChars = spaces;
+
+        for (let i = 0; i < numOfWords; i++) {
+            totalChars = totalChars + wordsArray[i].countFilledChars();
+        }
+
+        return totalChars;
+    }
 
 
     wordPicker(wordChoice = defaultWords) {

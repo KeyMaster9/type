@@ -74,5 +74,8 @@ export default class Word {
     countValidChars() {
         return this.characters.filter((char) => char.isValid()).length;
     }
+    countFilledChars() {
+        return this.characters.filter((char) => char.isValid() || char.isInvalid()).length;
+    }
 }
 

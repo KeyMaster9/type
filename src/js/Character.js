@@ -29,6 +29,9 @@ export default class Character {
     isValid() {
         return this.getCharacter() === this.getUserCharacter();
     }
+    isInvalid() {
+        return this.getCharacter() !== this.getUserCharacter();
+    }
 
     setActive(bool = true) {
         this.active = bool;

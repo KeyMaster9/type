@@ -32,6 +32,11 @@ var Calculations = /*#__PURE__*/function () {
       return this.wordContainer.countValidCharacters();
     }
   }, {
+    key: "getTotalChars",
+    value: function getTotalChars() {
+      return this.wordContainer.countTotalCharacters();
+    }
+  }, {
     key: "calcSeconds",
     value: function calcSeconds() {
       return this.timer.duration() / 1000;
@@ -57,6 +62,12 @@ var Calculations = /*#__PURE__*/function () {
     value: function runTrueWpmCalc() {
       console.log("".concat(this.relativeTime(), "seconds  ").concat(this.words(), "words"));
       return this.masterCalc(this.words(), this.relativeTime());
+    }
+  }, {
+    key: "runAccuracyCalc",
+    value: function runAccuracyCalc() {
+      var accuracy = 100 / this.getTotalChars();
+      return accuracy * this.getCorrectChars();
     }
   }]);
 
@@ -126,6 +137,11 @@ var Character = /*#__PURE__*/function () {
     key: "isValid",
     value: function isValid() {
       return this.getCharacter() === this.getUserCharacter();
+    }
+  }, {
+    key: "isInvalid",
+    value: function isInvalid() {
+      return this.getCharacter() !== this.getUserCharacter();
     }
   }, {
     key: "setActive",
@@ -318,9 +334,8 @@ var ResultsRenderer = /*#__PURE__*/function () {
     value: function renderSequence() {
       var wpm = this.calculations.runTrueWpmCalc();
       var totalTime = this.calculations.calcSeconds();
-      var correctWords = this.calculations.words();
-      var correctChars = this.calculations.getCorrectChars();
-      var displaySheet = "\n        <div id=\"wpm\" class=\"results-rendered\">WPM: ".concat(Math.round(wpm), "</div>\n        <br/>\n        <div id=\"total-time\" class=\"results-rendered\">Time: ").concat(totalTime, "s</div>\n        <br/>\n        <div id=\"correct-words\" class=\"results-rendered\">Correct words: ").concat(correctWords, "</div>\n        <br/>\n        <div id=\"correct-characters\" class=\"results-rendered\">Correct Characters: ").concat(correctChars, "</div>\n        ");
+      var accuracy = this.calculations.runAccuracyCalc();
+      var displaySheet = "\n        <div id=\"wpm\" class=\"results-rendered\">WPM: ".concat(Math.round(wpm), "</div>\n        <br/>\n        <div id=\"total-time\" class=\"results-rendered\">Time: ").concat(totalTime.toFixed(1), "s</div>\n        <br/>\n        <div id=\"accuracy\" class=\"results-rendered\">Accuracy: ").concat(accuracy.toFixed(1), "%</div>\n        ");
       return displaySheet;
     }
   }]);
@@ -859,6 +874,13 @@ var Word = /*#__PURE__*/function () {
         return _char.isValid();
       }).length;
     }
+  }, {
+    key: "countFilledChars",
+    value: function countFilledChars() {
+      return this.characters.filter(function (_char2) {
+        return _char2.isValid() || _char2.isInvalid();
+      }).length;
+    }
   }]);
 
   return Word;
@@ -1001,6 +1023,20 @@ var WordContainer = /*#__PURE__*/function () {
       }
 
       return correctChar;
+    }
+  }, {
+    key: "countTotalCharacters",
+    value: function countTotalCharacters() {
+      var numOfWords = this.countCompleteWords() + 1;
+      var wordsArray = this.words;
+      var spaces = this.countCompleteWords();
+      var totalChars = spaces;
+
+      for (var i = 0; i < numOfWords; i++) {
+        totalChars = totalChars + wordsArray[i].countFilledChars();
+      }
+
+      return totalChars;
     }
   }, {
     key: "wordPicker",
