@@ -35,12 +35,8 @@ export default class MobileHandler {
     }
     mobileScroll() {
         var browserHeight = screen.height / 2;
-        console.log(browserHeight)
         var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop;
-        console.log(activeHeight)
-        var scrollHeight = activeHeight - browserHeight;
-        console.log(scrollHeight)
-        window.scrollTo(0, scrollHeight);
-
+        // var scrollHeight = activeHeight - browserHeight;
+        window.scrollTo(0, activeHeight);
     }    
 }
