@@ -34,12 +34,10 @@ export default class MobileHandler {
         wordcontainer.addEventListener('click', callback);
     }
     mobileScroll() {
-        // var browserHeight = window.innerHeight / 2;
-
-        // const active = document.querySelector('div.word.active.incomplete');
-        // window.scrollTo(0, browserHeight);
-        var activeHeight = document.querySelector('div.word.active.incomplete').innerHeight;
-        window.scrollTo(0, activeHeight);
+        var browserHeight = window.innerHeight / 2;
+        var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop;
+        var scrollHeight = browserHeight + activeHeight;
+        window.scrollTo(0, scrollHeight);
 
     }    
 }
