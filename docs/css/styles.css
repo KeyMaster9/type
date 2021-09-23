@@ -98,9 +98,9 @@ li:hover {
     max-width: 1000px;
     height: 100%;
 }
-#mobile-input {
-    visibility: hidden;
-}
+/* #mobile-input {
+    /* visibility: hidden; */
+} */
 #mobileInput {
     width: 100%;
     font-size: 1rem;
