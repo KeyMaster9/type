@@ -36,7 +36,7 @@ export default class MobileHandler {
     mobileScroll() {
         var browserHeight = window.innerHeight / 2;
 
-        // const active = document.querySelector('div.word.active.incomplete');
-        window.scrollTo(0, browserHeight);
+        const active = document.querySelector('div.word.active.incomplete');
+        active.scrollTo(0, browserHeight);
     }    
 }
