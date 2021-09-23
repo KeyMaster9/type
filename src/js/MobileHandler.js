@@ -26,5 +26,6 @@ export default class MobileHandler {
     mobileFocus() {
         const mobileInput = document.getElementById('mobileInput')
         mobileInput.focus();
+        console.log('found input')
     }
 }

@@ -228,6 +228,7 @@ var MobileHandler = /*#__PURE__*/function () {
     value: function mobileFocus() {
       var mobileInput = document.getElementById('mobileInput');
       mobileInput.focus();
+      console.log('found input');
     }
   }]);
 
