@@ -226,7 +226,7 @@ var MobileHandler = /*#__PURE__*/function () {
   }, {
     key: "mobileFocus",
     value: function mobileFocus() {
-      var mobileInput = document.getElementById('mobile-input');
+      var mobileInput = document.getElementById('mobileInput');
       mobileInput.focus();
     }
   }]);
