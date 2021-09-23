@@ -28,8 +28,11 @@ export default class MobileHandler {
         mobileInput.focus();
         console.log('found input')
     }
-    mobileRefocus() {
+    onMobileRefocus(callback) {
         const wordcontainer = document.getElementById('typing-area');
-        wordcontainer.addEventListener('click', this.mobileFocus())
+        wordcontainer.addEventListener('click', () => {
+            const refocus = 'refocus';
+            callback(refocus);
+        })
     }
 }

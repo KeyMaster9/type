@@ -231,10 +231,13 @@ var MobileHandler = /*#__PURE__*/function () {
       console.log('found input');
     }
   }, {
-    key: "mobileRefocus",
-    value: function mobileRefocus() {
+    key: "onMobileRefocus",
+    value: function onMobileRefocus(callback) {
       var wordcontainer = document.getElementById('typing-area');
-      wordcontainer.addEventListener('click', this.mobileFocus());
+      wordcontainer.addEventListener('click', function () {
+        var refocus = 'refocus';
+        callback(refocus);
+      });
     }
   }]);
 
@@ -2659,9 +2662,14 @@ __webpack_require__.r(__webpack_exports__);
 
   if (isMobileUser) {
     mobileHandler.mobileFocus();
-    mobileHandler.mobileRefocus();
   }
 
+  mobileHandler.onMobileRefocus(function (refocus) {
+    if (isMobileUser && refocus) {
+      mobileHandler.mobileFocus();
+      console.log('refocused');
+    }
+  });
   var updateScreen = new _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__["default"]();
   var renderer = new _RenderWords__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementById('typing-area'));
   var wordContainer = new _WordContainer__WEBPACK_IMPORTED_MODULE_8__["default"]();

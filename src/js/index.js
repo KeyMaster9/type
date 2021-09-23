@@ -17,8 +17,13 @@ import MobileHandler from './MobileHandler';
     
     if (isMobileUser) {
         mobileHandler.mobileFocus();
-        mobileHandler.mobileRefocus();
     }
+    mobileHandler.onMobileRefocus((refocus) => {
+        if (isMobileUser && refocus) {
+            mobileHandler.mobileFocus();
+            console.log('refocused')
+        }
+    })
 
     const updateScreen = new UpdateScreen();
     const renderer = new RenderWords(document.getElementById('typing-area'));
