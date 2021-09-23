@@ -34,7 +34,8 @@ export default class MobileHandler {
         wordcontainer.addEventListener('click', callback);
     }
     mobileScroll(ogh, nh) {
-        var mh = ( nh - ogh) / 2; 
+        var premh = nh - ogh;
+        mh = premh / 2;
         const active = document.querySelector('div.word.active.incomplete');
         window.scrollTo(0, mh);
     }    

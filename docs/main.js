@@ -240,7 +240,8 @@ var MobileHandler = /*#__PURE__*/function () {
   }, {
     key: "mobileScroll",
     value: function mobileScroll(ogh, nh) {
-      var mh = (nh - ogh) / 2;
+      var premh = nh - ogh;
+      mh = premh / 2;
       var active = document.querySelector('div.word.active.incomplete');
       window.scrollTo(0, mh);
     }
