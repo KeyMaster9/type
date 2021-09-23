@@ -240,9 +240,12 @@ var MobileHandler = /*#__PURE__*/function () {
   }, {
     key: "mobileScroll",
     value: function mobileScroll() {
-      var browserHeight = window.innerHeight / 2;
+      var browserHeight = screen.height / 2;
+      console.log(browserHeight);
       var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop;
-      var scrollHeight = browserHeight + activeHeight;
+      console.log(activeHeight);
+      var scrollHeight = activeHeight - browserHeight;
+      console.log(scrollHeight);
       window.scrollTo(0, scrollHeight);
     }
   }]);

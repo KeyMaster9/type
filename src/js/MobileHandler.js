@@ -34,9 +34,12 @@ export default class MobileHandler {
         wordcontainer.addEventListener('click', callback);
     }
     mobileScroll() {
-        var browserHeight = window.innerHeight / 2;
+        var browserHeight = screen.height / 2;
+        console.log(browserHeight)
         var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop;
-        var scrollHeight = browserHeight + activeHeight;
+        console.log(activeHeight)
+        var scrollHeight = activeHeight - browserHeight;
+        console.log(scrollHeight)
         window.scrollTo(0, scrollHeight);
 
     }    
