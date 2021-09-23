@@ -227,7 +227,6 @@ var MobileHandler = /*#__PURE__*/function () {
     key: "mobileFocus",
     value: function mobileFocus() {
       var mobileInput = document.getElementById('mobileInput');
-      mobileInput.style.display = 'inline-block';
       mobileInput.focus();
       console.log('found input');
     }
@@ -239,6 +238,12 @@ var MobileHandler = /*#__PURE__*/function () {
         var refocus = 'refocus';
         callback(refocus);
       });
+    }
+  }, {
+    key: "mobileScroll",
+    value: function mobileScroll() {
+      var active = document.querySelector('div.word.active.incomplete');
+      window.scrollTo(0, active.offsetTop);
     }
   }]);
 
@@ -2709,6 +2714,10 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     renderer.render(wordContainer);
+
+    if (isMobileUser) {
+      mobileHandler.mobileScroll();
+    }
   });
   userInput.onComplete(function () {
     timer.end();

@@ -21,11 +21,10 @@ export default class MobileHandler {
                 );
             }
         }
-         return hasTouchScreen;   
+        return hasTouchScreen;
     }
     mobileFocus() {
         const mobileInput = document.getElementById('mobileInput');
-        mobileInput.style.display = 'inline-block'
         mobileInput.focus();
         console.log('found input');
     }
@@ -36,4 +35,8 @@ export default class MobileHandler {
             callback(refocus);
         })
     }
+    mobileScroll() {
+        const active = document.querySelector('div.word.active.incomplete');
+        window.scrollTo(0, active.offsetTop);
+    }    
 }

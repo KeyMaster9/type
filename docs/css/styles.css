@@ -104,34 +104,11 @@ li:hover {
 }
 
 #mobileInput {
-    width: 100%;
-    font-size: 1rem;
-    display: none;
-    background-color: #3a4142;
-    color: #3a4142;
-    text-align: center;
-    outline: none;
-    border: 0;
-    padding: 5vh 0 0;
-    text-decoration: none;
-    /* visibility: hidden; */
+    display:none;
+    position:fixed;
+    top:0;
 }
 
-#mobileInput::placeholder {
-    color: #32e1fa;
-    text-align: center;
-    outline: none;
-}
-#mobileInput:-ms-input-placeholder {
-    color: #32e1fa;
-    text-align: center;
-    outline: none;
-}
-#mobileInput::-ms-input-placeholder {
-    color: #32e1fa;
-    text-align: center;
-    outline: none;
-}
 
 .word {
     display: inline-block;

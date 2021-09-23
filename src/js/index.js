@@ -75,6 +75,10 @@ import MobileHandler from './MobileHandler';
             timerRenderer.startRenderering();
         }
         renderer.render(wordContainer);
+
+        if (isMobileUser) {
+            mobileHandler.mobileScroll();
+        }
     });
 
     userInput.onComplete(() => {
