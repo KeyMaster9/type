@@ -230,6 +230,12 @@ var MobileHandler = /*#__PURE__*/function () {
       mobileInput.focus();
       console.log('found input');
     }
+  }, {
+    key: "mobileRefocus",
+    value: function mobileRefocus() {
+      var wordcontainer = document.getElementById('typing-area');
+      wordcontainer.addEventListener('click', this.mobileFocus());
+    }
   }]);
 
   return MobileHandler;
@@ -2653,6 +2659,7 @@ __webpack_require__.r(__webpack_exports__);
 
   if (isMobileUser) {
     mobileHandler.mobileFocus();
+    mobileHandler.mobileRefocus();
   }
 
   var updateScreen = new _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__["default"]();

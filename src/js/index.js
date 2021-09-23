@@ -17,6 +17,7 @@ import MobileHandler from './MobileHandler';
     
     if (isMobileUser) {
         mobileHandler.mobileFocus();
+        mobileHandler.mobileRefocus();
     }
 
     const updateScreen = new UpdateScreen();
