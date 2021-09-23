@@ -9,8 +9,16 @@ import store from 'store';
 import WordContainer from './WordContainer';
 import ResetButton from './ResetButton';
 import UpdateScreen from './UpdateScreen';
+import MobileHandler from './MobileHandler';
 
 (function () {
+    const mobileHandler = new MobileHandler();
+    var isMobileUser = mobileHandler.mobileCheck();
+    
+    if (isMobileUser) {
+        mobileHandler.mobileFocus();
+    }
+
     const updateScreen = new UpdateScreen();
     const renderer = new RenderWords(document.getElementById('typing-area'));
 

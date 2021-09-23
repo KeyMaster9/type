@@ -30,6 +30,9 @@ export default class Calculations {
         var accuracy = 100 / this.getTotalChars();
         return accuracy * this.getCorrectChars();
     }
+    // runCalcRawWpm() {
+    //     var words = 
+    // }
 
 
 }

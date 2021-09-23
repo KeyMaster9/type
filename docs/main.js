@@ -68,7 +68,10 @@ var Calculations = /*#__PURE__*/function () {
     value: function runAccuracyCalc() {
       var accuracy = 100 / this.getTotalChars();
       return accuracy * this.getCorrectChars();
-    }
+    } // runCalcRawWpm() {
+    //     var words = 
+    // }
+
   }]);
 
   return Calculations;
@@ -167,6 +170,68 @@ var Character = /*#__PURE__*/function () {
   }]);
 
   return Character;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/MobileHandler.js":
+/*!*********************************!*\
+  !*** ./src/js/MobileHandler.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MobileHandler)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MobileHandler = /*#__PURE__*/function () {
+  function MobileHandler() {
+    _classCallCheck(this, MobileHandler);
+  }
+
+  _createClass(MobileHandler, [{
+    key: "mobileCheck",
+    value: function mobileCheck() {
+      var hasTouchScreen = false;
+
+      if ("maxTouchPoints" in navigator) {
+        hasTouchScreen = navigator.maxTouchPoints > 0;
+      } else if ("msMaxTouchPoints" in navigator) {
+        hasTouchScreen = navigator.msMaxTouchPoints > 0;
+      } else {
+        var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
+
+        if (mQ && mQ.media === "(pointer:coarse)") {
+          hasTouchScreen = !!mQ.matches;
+        } else if ('orientation' in window) {
+          hasTouchScreen = true; // deprecated, but good fallback
+        } else {
+          // Only as a last resort, fall back to user agent sniffing
+          var UA = navigator.userAgent;
+          hasTouchScreen = /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) || /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
+        }
+      }
+
+      return hasTouchScreen;
+    }
+  }, {
+    key: "mobileFocus",
+    value: function mobileFocus() {
+      var mobileInput = document.getElementById('mobile-input');
+      mobileInput.focus();
+    }
+  }]);
+
+  return MobileHandler;
 }();
 
 
@@ -2567,6 +2632,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WordContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./WordContainer */ "./src/js/WordContainer.js");
 /* harmony import */ var _ResetButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ResetButton */ "./src/js/ResetButton.js");
 /* harmony import */ var _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./UpdateScreen */ "./src/js/UpdateScreen.js");
+/* harmony import */ var _MobileHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./MobileHandler */ "./src/js/MobileHandler.js");
+
 
 
 
@@ -2580,6 +2647,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (function () {
+  var mobileHandler = new _MobileHandler__WEBPACK_IMPORTED_MODULE_11__["default"]();
+  var isMobileUser = mobileHandler.mobileCheck();
+
+  if (isMobileUser) {
+    mobileHandler.mobileFocus();
+  }
+
   var updateScreen = new _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__["default"]();
   var renderer = new _RenderWords__WEBPACK_IMPORTED_MODULE_0__["default"](document.getElementById('typing-area'));
   var wordContainer = new _WordContainer__WEBPACK_IMPORTED_MODULE_8__["default"]();
