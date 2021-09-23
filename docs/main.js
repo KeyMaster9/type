@@ -241,9 +241,9 @@ var MobileHandler = /*#__PURE__*/function () {
     key: "mobileScroll",
     value: function mobileScroll() {
       var browserHeight = screen.height / 2;
-      var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop; // var scrollHeight = activeHeight - browserHeight;
-
-      window.scrollTo(0, activeHeight);
+      var activeHeight = document.querySelector('div.word.active.incomplete').offsetTop;
+      var scrollHeight = activeHeight - browserHeight;
+      window.scrollTo(0, scrollHeight);
     }
   }]);
 
