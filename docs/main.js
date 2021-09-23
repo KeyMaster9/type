@@ -2648,6 +2648,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ResetButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ResetButton */ "./src/js/ResetButton.js");
 /* harmony import */ var _UpdateScreen__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./UpdateScreen */ "./src/js/UpdateScreen.js");
 /* harmony import */ var _MobileHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./MobileHandler */ "./src/js/MobileHandler.js");
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 
 
 
@@ -2668,7 +2670,7 @@ __webpack_require__.r(__webpack_exports__);
   var heightWKeeb = null;
 
   if (isMobileUser) {
-    window.checkDimensions();
+    window.innerHeight, _readOnlyError("ogHeight");
     mobileHandler.mobileFocus();
   }
 
