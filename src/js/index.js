@@ -14,10 +14,9 @@ import MobileHandler from './MobileHandler';
 (function () {
     const mobileHandler = new MobileHandler();
     var isMobileUser = mobileHandler.mobileCheck();
-    var ogHeight = window.innerHeight;
+    const ogHeight = window.innerHeight;
     var heightWKeeb = null;
     if (isMobileUser) {
-        ogHeight = window.innerHeight;
         mobileHandler.mobileFocus();
     }
     mobileHandler.onMobileRefocus(() => {

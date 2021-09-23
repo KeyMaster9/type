@@ -35,8 +35,8 @@ export default class MobileHandler {
     }
     mobileScroll(ogh, nh) {
         var premh = nh - ogh;
-        mh = premh / 2;
-        const active = document.querySelector('div.word.active.incomplete');
+        var mh = premh / 2;
+        // const active = document.querySelector('div.word.active.incomplete');
         window.scrollTo(0, mh);
     }    
 }

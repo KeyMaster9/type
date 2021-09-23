@@ -241,8 +241,8 @@ var MobileHandler = /*#__PURE__*/function () {
     key: "mobileScroll",
     value: function mobileScroll(ogh, nh) {
       var premh = nh - ogh;
-      mh = premh / 2;
-      var active = document.querySelector('div.word.active.incomplete');
+      var mh = premh / 2; // const active = document.querySelector('div.word.active.incomplete');
+
       window.scrollTo(0, mh);
     }
   }]);
@@ -2669,7 +2669,6 @@ __webpack_require__.r(__webpack_exports__);
   var heightWKeeb = null;
 
   if (isMobileUser) {
-    ogHeight = window.innerHeight;
     mobileHandler.mobileFocus();
   }
 
