@@ -239,11 +239,10 @@ var MobileHandler = /*#__PURE__*/function () {
     }
   }, {
     key: "mobileScroll",
-    value: function mobileScroll(ogh, nh) {
-      var premh = nh - ogh;
-      var mh = premh / 2; // const active = document.querySelector('div.word.active.incomplete');
+    value: function mobileScroll() {
+      var browserHeight = window.innerHeight / 2; // const active = document.querySelector('div.word.active.incomplete');
 
-      window.scrollTo(0, mh);
+      window.scrollTo(0, browserHeight);
     }
   }]);
 
@@ -2665,8 +2664,6 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   var mobileHandler = new _MobileHandler__WEBPACK_IMPORTED_MODULE_11__["default"]();
   var isMobileUser = mobileHandler.mobileCheck();
-  var ogHeight = window.innerHeight;
-  var heightWKeeb = null;
 
   if (isMobileUser) {
     mobileHandler.mobileFocus();
@@ -2675,11 +2672,6 @@ __webpack_require__.r(__webpack_exports__);
   mobileHandler.onMobileRefocus(function () {
     if (isMobileUser) {
       mobileHandler.mobileFocus();
-
-      if (heightWKeeb === null) {
-        heightWKeeb = window.innerHeight;
-      }
-
       console.log('refocused');
     }
   });
@@ -2723,7 +2715,7 @@ __webpack_require__.r(__webpack_exports__);
     renderer.render(wordContainer);
 
     if (isMobileUser) {
-      mobileHandler.mobileScroll(ogHeight, heightWKeeb);
+      mobileHandler.mobileScroll();
     }
   });
   userInput.onComplete(function () {

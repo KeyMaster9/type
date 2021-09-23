@@ -33,10 +33,10 @@ export default class MobileHandler {
         const wordcontainer = document.getElementById('typing-area');
         wordcontainer.addEventListener('click', callback);
     }
-    mobileScroll(ogh, nh) {
-        var premh = nh - ogh;
-        var mh = premh / 2;
+    mobileScroll() {
+        var browserHeight = window.innerHeight / 2;
+
         // const active = document.querySelector('div.word.active.incomplete');
-        window.scrollTo(0, mh);
+        window.scrollTo(0, browserHeight);
     }    
 }

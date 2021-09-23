@@ -14,18 +14,12 @@ import MobileHandler from './MobileHandler';
 (function () {
     const mobileHandler = new MobileHandler();
     var isMobileUser = mobileHandler.mobileCheck();
-    const ogHeight = window.innerHeight;
-    var heightWKeeb = null;
     if (isMobileUser) {
         mobileHandler.mobileFocus();
     }
     mobileHandler.onMobileRefocus(() => {
         if (isMobileUser) {
             mobileHandler.mobileFocus();
-            if(heightWKeeb === null) {
-                heightWKeeb = window.innerHeight;
-            }
-
             console.log('refocused')
         }
     })
@@ -82,7 +76,7 @@ import MobileHandler from './MobileHandler';
         renderer.render(wordContainer);
 
         if (isMobileUser) {
-            mobileHandler.mobileScroll(ogHeight, heightWKeeb);
+            mobileHandler.mobileScroll();
         }
     });
 
