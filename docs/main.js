@@ -227,6 +227,7 @@ var MobileHandler = /*#__PURE__*/function () {
     key: "mobileFocus",
     value: function mobileFocus() {
       var mobileInput = document.getElementById('mobileInput');
+      mobileInput.style.display = 'inline-block';
       mobileInput.focus();
       console.log('found input');
     }

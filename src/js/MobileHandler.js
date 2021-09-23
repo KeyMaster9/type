@@ -24,7 +24,8 @@ export default class MobileHandler {
          return hasTouchScreen;   
     }
     mobileFocus() {
-        const mobileInput = document.getElementById('mobileInput')
+        const mobileInput = document.getElementById('mobileInput');
+        mobileInput.style.display = 'inline-block'
         mobileInput.focus();
         console.log('found input');
     }
