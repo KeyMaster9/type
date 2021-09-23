@@ -235,16 +235,14 @@ var MobileHandler = /*#__PURE__*/function () {
     key: "onMobileRefocus",
     value: function onMobileRefocus(callback) {
       var wordcontainer = document.getElementById('typing-area');
-      wordcontainer.addEventListener('click', function () {
-        var refocus = 'refocus';
-        callback(refocus);
-      });
+      wordcontainer.addEventListener('click', callback);
     }
   }, {
     key: "mobileScroll",
-    value: function mobileScroll() {
+    value: function mobileScroll(ogh, nh) {
+      var mh = (ogh - nh) / 2;
       var active = document.querySelector('div.word.active.incomplete');
-      window.scrollTo(0, active.offsetTop);
+      window.scrollTo(0, mh);
     }
   }]);
 
@@ -2666,14 +2664,22 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   var mobileHandler = new _MobileHandler__WEBPACK_IMPORTED_MODULE_11__["default"]();
   var isMobileUser = mobileHandler.mobileCheck();
+  var ogHeight = window.innerHeight;
+  var heightWKeeb = null;
 
   if (isMobileUser) {
+    window.checkDimensions();
     mobileHandler.mobileFocus();
   }
 
-  mobileHandler.onMobileRefocus(function (refocus) {
-    if (isMobileUser && refocus) {
+  mobileHandler.onMobileRefocus(function () {
+    if (isMobileUser) {
       mobileHandler.mobileFocus();
+
+      if (heightWKeeb === null) {
+        heightWKeeb = window.innerHeight;
+      }
+
       console.log('refocused');
     }
   });
@@ -2717,7 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
     renderer.render(wordContainer);
 
     if (isMobileUser) {
-      mobileHandler.mobileScroll();
+      mobileHandler.mobileScroll(ogHeight, heightWKeeb);
     }
   });
   userInput.onComplete(function () {

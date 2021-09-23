@@ -31,13 +31,11 @@ export default class MobileHandler {
     }
     onMobileRefocus(callback) {
         const wordcontainer = document.getElementById('typing-area');
-        wordcontainer.addEventListener('click', () => {
-            const refocus = 'refocus';
-            callback(refocus);
-        })
+        wordcontainer.addEventListener('click', callback);
     }
-    mobileScroll() {
+    mobileScroll(ogh, nh) {
+        var mh = (ogh - nh) / 2;
         const active = document.querySelector('div.word.active.incomplete');
-        window.scrollTo(0, active.offsetTop);
+        window.scrollTo(0, mh);
     }    
 }
